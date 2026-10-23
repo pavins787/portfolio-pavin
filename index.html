@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pavin S | Portfolio</title>
+  <meta name="description" content="Portfolio of Pavin S - Second Year Student at KGCAS, Punjai Puliampatti, India. Java developer and software enthusiast." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark" data-accent="cyan">
+  <!-- Interactive Ambient Background -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar container">
+      <a href="#home" class="logo">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-name">Pavin</span>
+        <span class="logo-dot">.</span>
+        <span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Action Items & GitHub Icon -->
+      <div class="nav-actions">
+        <!-- Palette / Accent Switcher -->
+        <div class="color-picker" title="Change Theme Accent">
+          <button class="color-btn cyan active" data-color="cyan" aria-label="Cyan Accent"></button>
+          <button class="color-btn purple" data-color="purple" aria-label="Purple Accent"></button>
+          <button class="color-btn emerald" data-color="emerald" aria-label="Emerald Accent"></button>
+          <button class="color-btn sunset" data-color="sunset" aria-label="Sunset Accent"></button>
+        </div>
+
+        <!-- GitHub Integration Button with Icon -->
+        <a href="https://github.com/pavins787?tab=repositories" target="_blank" rel="noopener noreferrer" class="github-badge-btn" aria-label="Visit Pavin's GitHub Repositories">
+          <svg class="icon github-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="btn-text">GitHub</span>
+          <span class="pulse-indicator"></span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-nav-links">
+        <li><a href="#home" class="mobile-nav-link active">Home</a></li>
+        <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        <li>
+          <a href="https://github.com/pavins787?tab=repositories" target="_blank" rel="noopener noreferrer" class="mobile-github-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub Repositories
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HOME SECTION ================= -->
+    <section id="home" class="section hero-section">
+      <div class="container hero-container">
+        
+        <!-- Left: Text & Bio Content -->
+        <div class="hero-content" data-aos="fade-up">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Available for Collaborations & Learning</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Pavin S</span>
+          </h1>
+
+          <div class="hero-subtitle-box">
+            <span class="typing-prefix">&gt; </span>
+            <span id="typing-text" class="typing-text"></span>
+            <span class="cursor">|</span>
+          </div>
+
+          <!-- Academic & Location Chips -->
+          <div class="info-chips">
+            <div class="info-chip">
+              <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span><strong>KGCAS Student</strong></span>
+            </div>
+
+            <div class="info-chip">
+              <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span><strong>Second Year</strong> Undergraduate</span>
+            </div>
+
+            <div class="info-chip">
+              <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span><strong>Punjai Puliampatti</strong>, India</span>
+            </div>
+          </div>
+
+          <!-- Featured Spotlight Ribbon in Hero -->
+          <div class="highlight-badge-card" onclick="document.querySelector('#projects').scrollIntoView({behavior: 'smooth'})">
+            <div class="sparkle-icon">✦</div>
+            <div class="highlight-info">
+              <span class="badge-label">HIGHLIGHTED PROJECT</span>
+              <p class="badge-title">Hospital Patient Registration & Scheduling System</p>
+            </div>
+            <span class="jump-arrow">→</span>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
+            <a href="#contact" class="btn btn-secondary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>Get in Touch</span>
+            </a>
+
+            <a href="https://github.com/pavins787?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-glass" title="View GitHub Repositories">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Photo / Futuristic Avatar Card -->
+        <div class="hero-visual" data-aos="fade-left">
+          <div class="avatar-card-wrapper" id="profile-card">
+            <div class="avatar-card-glow"></div>
+            
+            <div class="avatar-card">
+              <!-- Animated Ring Outer Frame -->
+              <div class="avatar-ring-frame">
+                <div class="spinning-gradient"></div>
+                <div class="avatar-frame-inner">
+                  <!-- Pavin S Portrait Display -->
+                  <div class="photo-container" id="photo-box">
+                    <img 
+                      id="user-photo" 
+                      src="profile.jpg" 
+                      alt="Pavin S - Portrait" 
+                      class="profile-img"
+                      onerror="this.src='avatar.svg'"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Tag Overlays -->
+              <div class="floating-tag tag-code">
+                <span class="code-icon">&lt;/&gt;</span>
+                <span class="tag-title">Java Developer</span>
+              </div>
+
+              <div class="floating-tag tag-location">
+                <span class="loc-pin">📍</span>
+                <span>Punjai Puliampatti</span>
+              </div>
+
+              <div class="floating-tag tag-college">
+                <span class="college-icon">🎓</span>
+                <span>KGCAS</span>
+              </div>
+
+              <!-- Mini Identity Ribbon below photo -->
+              <div class="profile-card-footer">
+                <div class="profile-meta">
+                  <h3 class="profile-name">Pavin S</h3>
+                  <p class="profile-tagline">College of Arts and Science • 2nd Year</p>
+                </div>
+                <div class="profile-badge-pill">Student</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Down Indicator -->
+      <a href="#projects" class="scroll-down-hint" aria-label="Scroll to Projects">
+        <span class="mouse-icon">
+          <span class="mouse-wheel"></span>
+        </span>
+        <span class="scroll-text">Explore</span>
+      </a>
+    </section>
+
+    <!-- ================= PROJECTS SECTION ================= -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <span>PORTFOLIO SHOWCASE</span>
+          </div>
+          <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+          <p class="section-subtitle">
+            Crafting software solutions with clean architecture, object-oriented principles, and robust performance.
+          </p>
+        </div>
+
+        <!-- HIGHLIGHTED CAPSTONE PROJECT (Featured Large Card) -->
+        <div class="featured-project-card" id="capstone-highlight" data-aos="zoom-in">
+          <div class="featured-badge-header">
+            <span class="badge-featured-star">★ HIGHLIGHTED CAPSTONE PROJECT</span>
+            <span class="badge-java-pill">Java • Final Project</span>
+          </div>
+
+          <div class="featured-content-grid">
+            <!-- Project Overview & Details -->
+            <div class="project-details">
+              <h3 class="project-title">
+                Hospital Patient Registration and Appointment Scheduling System
+              </h3>
+              
+              <p class="project-description">
+                A mission-critical healthcare management application designed to automate patient intake, maintain digital health profiles, coordinate doctor rosters, and manage clinic appointment timetables smoothly. Built using core Java with modular object-oriented architecture.
+              </p>
+
+              <!-- Key Features Matrix -->
+              <div class="features-list">
+                <div class="feature-item">
+                  <div class="feature-bullet">✓</div>
+                  <span><strong>Patient Registration:</strong> Structured intake forms, digital patient ID generation, and record retention.</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-bullet">✓</div>
+                  <span><strong>Appointment Scheduling:</strong> Real-time slot allocation, conflict-free doctor timetables, and status tracking.</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-bullet">✓</div>
+                  <span><strong>Records & Diagnostics:</strong> Centralized visit history, departmental triage, and patient lookup.</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-bullet">✓</div>
+                  <span><strong>Clean Architecture:</strong> Robust OOP design patterns, input validation, and secure data handling.</span>
+                </div>
+              </div>
+
+              <!-- Tech Stack Badges -->
+              <div class="tech-tags">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">OOP</span>
+                <span class="tech-tag">Data Management</span>
+                <span class="tech-tag">Capstone</span>
+                <span class="tech-tag">System Design</span>
+              </div>
+
+              <!-- Project Action Links -->
+              <div class="project-action-bar">
+                <a 
+                  href="https://github.com/pavins787/Java-Capstone-Final-Project" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn btn-primary github-repo-cta"
+                >
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  <span>Visit on GitHub</span>
+                  <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+
+                <a 
+                  href="https://github.com/pavins787/Java-Capstone-Final-Project" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn btn-secondary"
+                >
+                  <span>View Source Code</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Project Visual Graphic / Interactive Mockup Frame -->
+            <div class="project-preview-card">
+              <div class="mockup-window">
+                <div class="mockup-bar">
+                  <div class="mockup-dots">
+                    <span class="mock-dot red"></span>
+                    <span class="mock-dot yellow"></span>
+                    <span class="mock-dot green"></span>
+                  </div>
+                  <div class="mockup-tab-title">HospitalSystem.java</div>
+                </div>
+
+                <div class="mockup-body">
+                  <pre class="code-snippet"><code><span class="c-keyword">public class</span> <span class="c-class">HospitalSystem</span> {
+  <span class="c-comment">// Patient Registration &amp; Scheduling</span>
+  <span class="c-keyword">private</span> List&lt;Patient&gt; patients;
+  <span class="c-keyword">private</span> Map&lt;Doctor, List&lt;Appointment&gt;&gt; schedule;
+
+  <span class="c-keyword">public void</span> <span class="c-method">registerPatient</span>(Patient p) {
+    patients.add(p);
+    System.out.println(<span class="c-str">"Patient registered: "</span> + p.getId());
+  }
+
+  <span class="c-keyword">public</span> Appointment <span class="c-method">scheduleSlot</span>(Patient p, Doctor d, Date time) {
+    Appointment appt = <span class="c-keyword">new</span> Appointment(p, d, time);
+    schedule.get(d).add(appt);
+    <span class="c-keyword">return</span> appt;
+  }
+}</code></pre>
+
+                  <div class="live-preview-stats">
+                    <div class="stat-box">
+                      <span class="stat-number">100%</span>
+                      <span class="stat-label">Object Oriented</span>
+                    </div>
+                    <div class="stat-box">
+                      <span class="stat-number">Zero</span>
+                      <span class="stat-label">Conflict Scheduling</span>
+                    </div>
+                    <div class="stat-box">
+                      <span class="stat-number">Capstone</span>
+                      <span class="stat-label">Final Project</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Additional Repositories & GitHub Explorer Banner -->
+        <div class="github-showcase-box" data-aos="fade-up">
+          <div class="github-showcase-content">
+            <div class="showcase-icon-wrapper">
+              <svg class="giant-gh-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="showcase-text">
+              <h3>Explore All Repositories &amp; Code</h3>
+              <p>Check out more academic works, algorithms, Java assignments, and code experiments on GitHub @pavins787.</p>
+            </div>
+            <a 
+              href="https://github.com/pavins787?tab=repositories" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn btn-primary"
+            >
+              <span>Explore GitHub Repositories</span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CONTACT SECTION ================= -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-tag">
+            <span>GET IN TOUCH</span>
+          </div>
+          <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+          <p class="section-subtitle">
+            Have an opportunity, college inquiry, project collaboration, or just want to say hi? Reach out directly!
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Left: Interactive Gmail Toggle & Direct Actions -->
+          <div class="contact-info-col" data-aos="fade-right">
+            
+            <!-- Gmail Interactive Toggle Card -->
+            <div class="gmail-toggle-card">
+              <div class="gmail-card-header">
+                <div class="gmail-icon-badge">
+                  <svg viewBox="0 0 24 24" class="icon" fill="currentColor">
+                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.272H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                  </svg>
+                </div>
+                <div class="gmail-title-group">
+                  <span class="gmail-sub">Official Student Mail</span>
+                  <h4 class="gmail-name">Gmail Toggle &amp; Connect</h4>
+                </div>
+                
+                <!-- Toggle switch control -->
+                <label class="switch" title="Toggle Gmail Actions Panel">
+                  <input type="checkbox" id="gmail-toggle-switch" checked />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+
+              <!-- Collapsible / Interactive Toggle Content -->
+              <div class="gmail-expandable-panel" id="gmail-panel">
+                <p class="gmail-helper-text">
+                  Direct student communication line for academic, internship, and project opportunities:
+                </p>
+
+                <!-- Email Display Pill with One-Click Copy -->
+                <div class="email-display-pill">
+                  <span class="email-text" id="target-email">25bit132@kgcas.com</span>
+                  <button 
+                    class="copy-btn" 
+                    id="copy-email-btn" 
+                    title="Copy email to clipboard" 
+                    aria-label="Copy Email"
+                  >
+                    <svg class="icon copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="copy-label">Copy</span>
+                  </button>
+                </div>
+
+                <!-- Fast Mail Launch Options -->
+                <div class="quick-mail-actions">
+                  <a 
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=25bit132@kgcas.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="btn-mail-action gmail-web"
+                  >
+                    <svg viewBox="0 0 24 24" class="icon" fill="currentColor">
+                      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.272H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                    </svg>
+                    <span>Open in Gmail Web</span>
+                  </a>
+
+                  <a 
+                    href="mailto:25bit132@kgcas.com" 
+                    class="btn-mail-action default-client"
+                  >
+                    <svg viewBox="0 0 24 24" class="icon" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <span>Default Mail Client</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Location & Academic Context Cards -->
+            <div class="contact-meta-cards">
+              <div class="meta-card">
+                <div class="meta-icon">📍</div>
+                <div>
+                  <div class="meta-title">Location</div>
+                  <div class="meta-desc">Punjai Puliampatti, Tamil Nadu, India</div>
+                </div>
+              </div>
+
+              <div class="meta-card">
+                <div class="meta-icon">🎓</div>
+                <div>
+                  <div class="meta-title">Institution</div>
+                  <div class="meta-desc">KG College of Arts and Science (KGCAS)</div>
+                </div>
+              </div>
+
+              <div class="meta-card">
+                <div class="meta-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="meta-title">GitHub Profile</div>
+                  <a href="https://github.com/pavins787?tab=repositories" target="_blank" rel="noopener noreferrer" class="meta-link">
+                    github.com/pavins787 ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: Interactive Quick Send Message Form -->
+          <div class="contact-form-col" data-aos="fade-left">
+            <div class="form-wrapper-card">
+              <h3 class="form-title">Send a Quick Message</h3>
+              <p class="form-subtitle">Writes an email directly addressed to <strong>25bit132@kgcas.com</strong></p>
+
+              <form id="contact-form" class="interactive-form">
+                <div class="form-group">
+                  <label for="sender-name">Your Name</label>
+                  <input type="text" id="sender-name" placeholder="John Doe" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="sender-email">Your Email Address</label>
+                  <input type="email" id="sender-email" placeholder="john@example.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="sender-subject">Subject</label>
+                  <input type="text" id="sender-subject" placeholder="Project Inquiry / Collaboration" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="sender-message">Message</label>
+                  <textarea id="sender-message" rows="4" placeholder="Hello Pavin, I came across your portfolio and wanted to discuss..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                  <span>Compose &amp; Dispatch Mail</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#home" class="logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-name">Pavin S</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-note">
+          Second Year Student at KGCAS • Punjai Puliampatti, India
+        </p>
+      </div>
+
+      <div class="footer-center">
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://github.com/pavins787?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-right">
+        <a href="https://github.com/pavins787?tab=repositories" target="_blank" rel="noopener noreferrer" class="footer-gh-pill">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>github.com/pavins787</span>
+        </a>
+        <div class="copyright-text">
+          &copy; <span id="current-year">2026</span> Pavin S. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Feedback Notification Container -->
+  <div id="toast" class="toast">
+    <div class="toast-content">
+      <span class="toast-icon">✓</span>
+      <span class="toast-msg" id="toast-msg">Email copied to clipboard!</span>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

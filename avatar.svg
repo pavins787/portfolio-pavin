@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Geometric Circuit Lines -->
+  <path d="M 40 200 L 120 200 L 160 250 L 240 250 L 280 200 L 360 200" stroke="#06b6d4" stroke-width="2" stroke-opacity="0.25" fill="none"/>
+  <circle cx="160" cy="250" r="4" fill="#06b6d4" fill-opacity="0.6"/>
+  <circle cx="240" cy="250" r="4" fill="#3b82f6" fill-opacity="0.6"/>
+  <path d="M 100 80 L 150 130 L 250 130 L 300 80" stroke="#8b5cf6" stroke-width="2" stroke-opacity="0.25" fill="none"/>
+
+  <!-- Developer Silhouette / Character -->
+  <!-- Shoulders / Torso -->
+  <path d="M 90 380 C 90 300, 140 270, 200 270 C 260 270, 310 300, 310 380 Z" fill="url(#primaryGrad)"/>
+  
+  <!-- Hoodie / Collar Trim -->
+  <path d="M 160 275 Q 200 325 240 275" fill="#090d16" opacity="0.4"/>
+  <path d="M 180 270 L 200 310 L 220 270" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Neck -->
+  <rect x="180" y="225" width="40" height="55" rx="6" fill="#fcd34d" opacity="0.9"/>
+
+  <!-- Head / Face -->
+  <ellipse cx="200" cy="180" rx="60" ry="70" fill="#fde68a"/>
+
+  <!-- Hair Modern Style -->
+  <path d="M 135 175 C 130 115, 170 95, 220 95 C 265 95, 275 130, 265 170 C 255 125, 225 110, 195 112 C 160 115, 145 140, 135 175 Z" fill="#1e293b"/>
+
+  <!-- Stylish Glasses -->
+  <rect x="155" y="165" width="38" height="26" rx="6" fill="none" stroke="#06b6d4" stroke-width="3.5" filter="url(#glow)"/>
+  <rect x="207" y="165" width="38" height="26" rx="6" fill="none" stroke="#06b6d4" stroke-width="3.5" filter="url(#glow)"/>
+  <line x1="193" y1="178" x2="207" y2="178" stroke="#06b6d4" stroke-width="3"/>
+  <!-- Glasses Temple Arms -->
+  <line x1="140" y1="174" x2="155" y2="174" stroke="#06b6d4" stroke-width="3"/>
+  <line x1="245" y1="174" x2="260" y2="174" stroke="#06b6d4" stroke-width="3"/>
+
+  <!-- Friendly Smile -->
+  <path d="M 185 220 Q 200 230 215 220" stroke="#b45309" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Floating Coding Hologram Badge -->
+  <g transform="translate(260, 90)">
+    <circle cx="25" cy="25" r="24" fill="#090d16" stroke="#06b6d4" stroke-width="2"/>
+    <text x="25" y="32" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#38bdf8" text-anchor="middle">&lt;/&gt;</text>
+  </g>
+</svg>
